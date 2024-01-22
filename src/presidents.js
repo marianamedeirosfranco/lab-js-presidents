@@ -515,16 +515,54 @@ function sortPresidentsByBirthYear(presidentsArr) {
 
   return sortedPresidents;
 }
-
 // BONUS: Iteration 8 | Age At Inauguration - `map()`
-function getAgeAtInauguration(presidentsArr) {}
+function getAgeAtInauguration(presidentsArr) {
+  const result = presidentsArr.map((president) => {
+    return {
+      id: president.id,
+      name: president.name,
+      birthYear: president.birthYear,
+      deathYear: president.deathYear,
+      tookOffice: president.tookOffice,
+      leftOffice: president.leftOffice,
+      party: president.party,
+      ageAtInauguration: president.tookOffice - president.birthYear,
+    };
+  });
+  return result;
+}
 
-// console.log("ageAtInauguration(presidents)", ageAtInauguration(presidents));
+/* Another way of doing it using the spread operator (...) to copy the object properties:
+
+function getAgeAtInauguration(presidentsArr) {
+ const result = presidentsArr.map((president) => ({
+    ...president,
+    ageAtInauguration: president.tookOffice - president.birthYear,
+ }));
+ return result;
+ } */
+
+console.log("ageAtInauguration(presidents)", getAgeAtInauguration(presidents));
 
 // BONUS: Iteration 9 | Presidents Born After - `filter()`
-function getPresidentsBornAfter(presidentsArr, year) {}
+function getPresidentsBornAfter(presidentsArr, year) {
+  const result = presidentsArr.filter((president) => {
+    return president.birthYear > year;
+  });
+  return result;
+}
 
-// console.log("getPresidentsBornAfter(presidents)", getPresidentsBornAfter(presidents));
+console.log(
+  "getPresidentsBornAfter(presidents)",
+  getPresidentsBornAfter(presidents)
+);
 
 // BONUS: Iteration 10: Sort Presidents by Name - `sort()`
-function sortPresidentsByName(presidentsArr) {}
+function sortPresidentsByName(presidentsArr) {
+  const sortedPresidents = presidentsArr.sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
+
+  return sortedPresidents;
+}
+console.log("sortedPresidents", sortPresidentsByName(presidents));
